@@ -1,46 +1,64 @@
 import CommentField from "./CommentField";
 import Title from "./Title";
 import CommentCard from "./CommentCard";
+import { useState, useEffect } from "react";
+import Loader from "./Loader";
+import { useParams } from "react-router-dom";
 
 function ArticlePage(props) {
-  return (
+  const [showLoader, setShowLoader] = useState(true);
+  const [articleData, setArticleData] = useState([]);
+
+  const params = useParams();
+
+  // GET with fetch API
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setShowLoader(true);
+        const response = await fetch(
+          `http://localhost:8000/article/${params.id}`
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        setShowLoader(false);
+        setArticleData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchArticles();
+  }, []);
+
+  return showLoader ? (
+    <Loader />
+  ) : (
     <div className="article-page">
-      <h1 className="title">Title of the article is written here</h1>
-      <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets containing Lorem Ipsum passages, and more recently
-        with desktop publishing software like Aldus PageMaker including versions
-        of Lorem Ipsum.
-      </p>
+      <h1 className="title">{articleData.article.title}</h1>
+      <p>{articleData.article.text}</p>
       <CommentField />
       <Title title="Comments" />
       <div className="comments-container">
-        <CommentCard
-          comment={{
-            author: "Mike Tyson",
-            timestamp: "March 22, 2023",
-            text: "Nice text, I really like it a lot",
-          }}
-        />
-        <CommentCard
-          comment={{
-            author: "Mike Tyson",
-            timestamp: "March 22, 2023",
-            text: "Nice text, I really like it a lot",
-          }}
-        />
-        <CommentCard
-          comment={{
-            author: "Mike Tyson",
-            timestamp: "March 22, 2023",
-            text: "Nice text, I really like it a lot",
-          }}
-        />
+        {articleData.comments.length > 0 ? (
+          <>
+            {articleData.comments.map((comment) => (
+              <CommentCard
+                key={comment._id}
+                comment={{
+                  author: comment.author,
+                  timestamp: comment.timestamp,
+                  text: comment.text,
+                }}
+              />
+            ))}
+          </>
+        ) : (
+          <h3>This article doesn't have any comments yet.</h3>
+        )}
       </div>
     </div>
   );

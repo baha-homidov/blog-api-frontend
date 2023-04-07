@@ -1,5 +1,9 @@
 function Loader() {
-  return <span class="loader"></span>;
+  return (
+    <div className="loader-container">
+      <span className="loader"></span>
+    </div>
+  );
 }
 
 export default Loader;

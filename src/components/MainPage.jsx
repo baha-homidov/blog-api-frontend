@@ -8,41 +8,41 @@ import { useState, useEffect } from "react";
 
 function MainPage() {
   const [showLoader, setShowLoader] = useState(false);
+  const [articleList, setArticleList] = useState([]);
 
-  return (
+  // GET with fetch API
+  useEffect(() => {
+    const fetchArticles = async () => {
+      setShowLoader(true);
+      const response = await fetch("http://localhost:8000");
+      const data = await response.json();
+      setShowLoader(false);
+      data.map((item) => {
+        return console.log(item);
+      });
+
+      setArticleList(data);
+    };
+    fetchArticles();
+  }, []);
+
+  return showLoader ? (
+    <Loader />
+  ) : (
     <div className="main-page">
-      <Loader />
       <Welcome />
       <div className="content">
-        <Title title="Latest Posts" />
-        <Link to="article/123">
-          <ArticleCard
-            article={{
-              title: "Title",
-              text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-              timestamp: "March 4, 2023",
-            }}
-          />
-        </Link>
-
-        <Link to="article/123">
-          <ArticleCard
-            article={{
-              title: "Title",
-              text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-              timestamp: "March 4, 2023",
-            }}
-          />
-        </Link>
-        <Link to="article/123">
-          <ArticleCard
-            article={{
-              title: "Title",
-              text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-              timestamp: "March 4, 2023",
-            }}
-          />
-        </Link>
+        {articleList.map((item) => (
+          <Link key={item._id} to={`article/${item._id}`}>
+            <ArticleCard
+              article={{
+                title: item.title,
+                text: item.text,
+                timestamp: item.timestamp,
+              }}
+            />
+          </Link>
+        ))}
       </div>
     </div>
   );

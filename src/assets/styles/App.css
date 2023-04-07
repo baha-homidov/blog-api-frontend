@@ -13,9 +13,8 @@
   background-color: #202833;
 }
 
-.app .loader {
-  align-self: center;
-  border: 1px solid red;
+.app .loader-container {
+  margin-top: 20vh;
 }
 
 a {
@@ -23,7 +22,7 @@ a {
 }
 
 .app .content-wrapper {
-  max-width: max(50vw, 700px);
+width: max(50vw, 700px);
   align-self: center;
 }
 
@@ -189,7 +188,6 @@ a {
 .app .comment-field textarea {
   width: min(100%, 400px);
   height: 100px;
-  resize: none;
   outline: none;
   transition: all 0.2s ease;
 }
@@ -247,14 +245,19 @@ a {
 }
 
 /* loading spinner */
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .loader {
-  width: 48px;
-  height: 48px;
+  width: 98px;
+  height: 98px;
   border: 3px dotted #fff;
   border-style: solid solid dotted dotted;
   border-radius: 50%;
   display: inline-block;
-  position: relative;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
 }
@@ -267,10 +270,10 @@ a {
   top: 0;
   bottom: 0;
   margin: auto;
-  border: 3px dotted #ff3d00;
+  border: 3px dotted #67fcf1;
   border-style: solid solid dotted;
-  width: 24px;
-  height: 24px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   animation: rotationBack 1s linear infinite;
   transform-origin: center center;
