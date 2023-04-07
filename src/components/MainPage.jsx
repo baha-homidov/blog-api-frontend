@@ -1,15 +1,21 @@
 import Welcome from "./Welcome";
 import Title from "./Title";
 import ArticleCard from "./ArticleCard";
+import Loader from "./Loader";
 import "../assets/styles/MainPage.css";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function MainPage() {
+  const [showLoader, setShowLoader] = useState(false);
+
   return (
     <div className="main-page">
+      <Loader />
       <Welcome />
       <div className="content">
         <Title title="Latest Posts" />
-        <a href="article/123">
+        <Link to="article/123">
           <ArticleCard
             article={{
               title: "Title",
@@ -17,8 +23,9 @@ function MainPage() {
               timestamp: "March 4, 2023",
             }}
           />
-        </a>
-        <a href="article/123">
+        </Link>
+
+        <Link to="article/123">
           <ArticleCard
             article={{
               title: "Title",
@@ -26,8 +33,8 @@ function MainPage() {
               timestamp: "March 4, 2023",
             }}
           />
-        </a>
-        <a href="article/123">
+        </Link>
+        <Link to="article/123">
           <ArticleCard
             article={{
               title: "Title",
@@ -35,7 +42,7 @@ function MainPage() {
               timestamp: "March 4, 2023",
             }}
           />
-        </a>
+        </Link>
       </div>
     </div>
   );

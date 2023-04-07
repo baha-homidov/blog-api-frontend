@@ -9,7 +9,13 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
   background-color: #202833;
+}
+
+.app .loader {
+  align-self: center;
+  border: 1px solid red;
 }
 
 a {
@@ -17,13 +23,12 @@ a {
 }
 
 .app .content-wrapper {
-  max-width: max(75vw, 800px);
+  max-width: max(50vw, 700px);
   align-self: center;
 }
 
 .app .header {
   background-color: #0b0d10;
-
   padding: 10px 20px 10px 20px;
   display: flex;
   justify-content: center;
@@ -31,11 +36,14 @@ a {
 }
 
 .app .header h1 {
-  color: #67fcf1;
   font-family: Courier, monospace;
   font-weight: bolder;
   flex-grow: 1;
   max-width: max(85vw, 800px);
+}
+
+.app .header h1 a {
+  color: #67fcf1;
 }
 
 .app .main-page .content {
@@ -138,7 +146,149 @@ a {
 }
 
 .app .footer .links a {
-  color: #46A29F;
+  color: #46a29f;
   font-weight: bold;
+}
 
+.app .article-page {
+  display: flex;
+  gap: 30px;
+  padding: 15px;
+  flex-direction: column;
+  color: #ffffff;
+}
+
+.app .article-page h1.title {
+  align-self: center;
+  font-size: 2.78rem;
+  text-align: center;
+}
+
+.app .article-page p {
+  font-size: 1.1rem;
+}
+
+.app .comment-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app .comment-field div.label {
+  color: #67fcf1;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.app .comment-field form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+.app .comment-field textarea {
+  width: min(100%, 400px);
+  height: 100px;
+  resize: none;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.app .comment-field textarea:focus {
+  box-shadow: 5px 5px 0px #82bbc0;
+}
+
+.app .comment-field button {
+  transition: all 0.2s ease;
+
+  height: 35px;
+  width: 100px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: 2px solid #82bbc0;
+  color: #d7d6db;
+  cursor: pointer;
+}
+.app .comment-field button:hover {
+  box-shadow: 3px 3px 0px #82bbc0;
+}
+
+.app .comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.app .comment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.app .comment-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 100px;
+}
+
+.app .comment-card .card-header .title {
+  font-size: 1.3rem;
+  color: #79dad7;
+}
+
+.app .comment-card .card-header .time {
+  color: #c5c6c8;
+}
+
+.app .comment-card .text {
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+/* loading spinner */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 3px dotted #fff;
+  border-style: solid solid dotted dotted;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px dotted #ff3d00;
+  border-style: solid solid dotted;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  animation: rotationBack 1s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }

@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <div className="header">
-      <h1>Blog API</h1>
+      <h1>
+        <Link to="/">Blog API</Link>
+      </h1>
     </div>
   );
 }
