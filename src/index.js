@@ -5,25 +5,25 @@ import "./assets/styles/index.css";
 import App from "./components/App";
 import ArticlePage from "./components/ArticlePage";
 import MainPage from "./components/MainPage";
-import NotFound from "./components/NotFound";
+import ErrorComponent from "./components/ErrorComponent";
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <NotFound />,
+    errorElement: <ErrorComponent />,
     children: [
       {
         path: "/",
         element: <MainPage />,
-        errorElement: <NotFound />,
+        errorElement: <ErrorComponent />,
       },
       {
         path: "/article/:id",
         element: <ArticlePage />,
-        errorElement: <NotFound />,
-      }
+        errorElement: <ErrorComponent />,
+      },
     ],
   },
 ]);

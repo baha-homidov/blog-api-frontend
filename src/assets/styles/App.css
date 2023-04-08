@@ -186,6 +186,7 @@ width: max(50vw, 700px);
   gap: 15px;
 }
 .app .comment-field textarea {
+  resize: none;
   width: min(100%, 400px);
   height: 100px;
   outline: none;

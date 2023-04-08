@@ -1,5 +1,6 @@
 import Welcome from "./Welcome";
-import Title from "./Title";
+import format from "date-fns/format";
+import ErrorComponent from "./ErrorComponent";
 import ArticleCard from "./ArticleCard";
 import Loader from "./Loader";
 import "../assets/styles/MainPage.css";
@@ -9,22 +10,29 @@ import { useState, useEffect } from "react";
 function MainPage() {
   const [showLoader, setShowLoader] = useState(false);
   const [articleList, setArticleList] = useState([]);
+  const [errorObj, setErrorObj] = useState(null);
 
   // GET with fetch API
   useEffect(() => {
     const fetchArticles = async () => {
-      setShowLoader(true);
-      const response = await fetch("http://localhost:8000");
-      const data = await response.json();
-      setShowLoader(false);
-      data.map((item) => {
-        return console.log(item);
-      });
+      try {
+        setShowLoader(true);
+        const response = await fetch("http://localhost:8000");
+        const data = await response.json();
 
-      setArticleList(data);
+        setShowLoader(false);
+        setArticleList(data);
+      } catch (error) {
+        console.log(error.status);
+        setErrorObj({ message: error.message, status: error.status });
+      }
     };
     fetchArticles();
   }, []);
+
+  if (errorObj) {
+    return <ErrorComponent error={errorObj} />;
+  }
 
   return showLoader ? (
     <Loader />
@@ -38,7 +46,7 @@ function MainPage() {
               article={{
                 title: item.title,
                 text: item.text,
-                timestamp: item.timestamp,
+                timestamp: format(new Date(item.timestamp), 'LLLL d, y'),
               }}
             />
           </Link>
