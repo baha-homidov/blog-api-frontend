@@ -1,10 +1,10 @@
-function ErrorComponent(props) {
-  console.log(props.error);
+import { Link } from "react-router-dom";
 
+function ErrorComponent() {
   return (
     <div className="error-component">
-      <h1>{props.error.message} </h1>
-      <h1>{props.error.status} </h1>
+      <h1>An error has occured </h1>
+      <Link to="/">Go Home</Link>
     </div>
   );
 }

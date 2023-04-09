@@ -19,7 +19,9 @@ function MainPage() {
         setShowLoader(true);
         const response = await fetch("http://localhost:8000");
         const data = await response.json();
-
+        data.sort(
+          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+        );
         setShowLoader(false);
         setArticleList(data);
       } catch (error) {
@@ -46,7 +48,7 @@ function MainPage() {
               article={{
                 title: item.title,
                 text: item.text,
-                timestamp: format(new Date(item.timestamp), 'LLLL d, y'),
+                timestamp: format(new Date(item.timestamp), "LLLL d, y"),
               }}
             />
           </Link>

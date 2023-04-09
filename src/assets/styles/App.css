@@ -22,7 +22,7 @@ a {
 }
 
 .app .content-wrapper {
-width: max(50vw, 700px);
+  width: max(50vw, 700px);
   align-self: center;
 }
 
@@ -179,21 +179,37 @@ width: max(50vw, 700px);
   font-weight: bold;
 }
 
+.app .comment-field label {
+  margin-bottom: -10px;
+}
+
 .app .comment-field form {
   display: flex;
   flex-direction: column;
 
   gap: 15px;
 }
+
+.app .comment-field input,
 .app .comment-field textarea {
-  resize: none;
   width: min(100%, 400px);
-  height: 100px;
-  outline: none;
   transition: all 0.2s ease;
 }
-.app .comment-field textarea:focus {
+
+.app .comment-field textarea {
+  resize: none;
+
+  height: 100px;
+  outline: none;
+}
+.app .comment-field textarea:focus,
+.app .comment-field input:focus {
   box-shadow: 5px 5px 0px #82bbc0;
+}
+
+.app .comment-field input {
+  outline: none;
+  height: 25px;
 }
 
 .app .comment-field button {
@@ -243,6 +259,14 @@ width: max(50vw, 700px);
 .app .comment-card .text {
   color: #ffffff;
   font-size: 1.1rem;
+}
+
+.app .error-component {
+  height: 50vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* loading spinner */
