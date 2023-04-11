@@ -5,6 +5,10 @@
     "Lucida Sans", Arial, sans-serif;
 }
 
+h1 {
+  color: white;
+}
+
 .app {
   min-height: 100vh;
   display: flex;

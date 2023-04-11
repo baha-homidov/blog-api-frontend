@@ -6,6 +6,7 @@ import App from "./components/App";
 import ArticlePage from "./components/ArticlePage";
 import MainPage from "./components/MainPage";
 import ErrorComponent from "./components/ErrorComponent";
+import AuthPage from "./components/AuthPage";
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
       {
         path: "/article/:id",
         element: <ArticlePage />,
+        errorElement: <ErrorComponent />,
+      },
+      {
+        path: "/auth",
+        element: <AuthPage />,
         errorElement: <ErrorComponent />,
       },
     ],
