@@ -7,6 +7,7 @@ import ArticlePage from "./components/ArticlePage";
 import MainPage from "./components/MainPage";
 import ErrorComponent from "./components/ErrorComponent";
 import AuthPage from "./components/AuthPage";
+import AuthContextProvider from "./context/AuthContextProvider";
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorComponent />,
       },
       {
-        path: "/auth",
+        path: "/admin",
         element: <AuthPage />,
         errorElement: <ErrorComponent />,
       },
@@ -37,7 +38,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

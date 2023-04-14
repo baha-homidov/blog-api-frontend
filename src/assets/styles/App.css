@@ -177,7 +177,8 @@ a {
   gap: 12px;
 }
 
-.app .comment-field div.label {
+.app .comment-field div.label,
+.app .auth-page label {
   color: #67fcf1;
   font-size: 1.1rem;
   font-weight: bold;
@@ -202,12 +203,12 @@ a {
 
 .app .comment-field textarea {
   resize: none;
-
   height: 100px;
   outline: none;
 }
 .app .comment-field textarea:focus,
-.app .comment-field input:focus {
+.app .comment-field input:focus,
+.app .auth-page input:focus {
   box-shadow: 5px 5px 0px #82bbc0;
 }
 
@@ -216,7 +217,8 @@ a {
   height: 25px;
 }
 
-.app .comment-field button {
+.app .comment-field button,
+.app .auth-page button {
   transition: all 0.2s ease;
 
   height: 35px;
@@ -228,7 +230,8 @@ a {
   color: #d7d6db;
   cursor: pointer;
 }
-.app .comment-field button:hover {
+.app .comment-field button:hover,
+.app .auth-page button:hover {
   box-shadow: 3px 3px 0px #82bbc0;
 }
 
@@ -273,6 +276,31 @@ a {
   align-items: center;
 }
 
+.app .auth-page {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 50px;
+}
+
+.app .auth-page .login {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.app .auth-page input {
+  outline: none;
+  padding: 5px;
+  font-size: 1.1rem;
+  width: min(100%, 400px);
+  transition: all 0.2s ease;
+}
+
+.app .auth-page .invalid-password {
+  font-size: 1.3rem;
+  color: red;
+}
 /* loading spinner */
 
 .loader-container {

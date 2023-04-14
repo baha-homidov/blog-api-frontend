@@ -21,7 +21,7 @@ function ArticlePage(props) {
     const fetchArticles = async () => {
       try {
         setShowLoader(true);
-
+ 
         const response = await fetch(
           `http://localhost:8000/article/${params.id}`
         );
