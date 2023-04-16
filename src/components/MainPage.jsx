@@ -30,7 +30,7 @@ function MainPage() {
     fetchArticles();
   }, []);
 
-  async function removeArticleFromLocalArray(id) {
+  function removeArticleFromLocalArray(id) {
     setArticleList(articleList.filter((item) => item._id !== id));
   }
 

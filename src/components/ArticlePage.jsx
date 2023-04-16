@@ -32,7 +32,7 @@ function ArticlePage(props) {
         data.comments.sort(
           (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
         );
-        console.log(data.comments);
+
         if (!response.ok) {
           throw new Error(data.error, { status: 404 });
         }
@@ -76,6 +76,12 @@ function ArticlePage(props) {
       setErrorObj({ message: error.message, status: error.status });
     }
   };
+
+  function removeCommentFromLocalArray(id) {
+    const newArticle = articleData;
+    newArticle.comments = newArticle.comments.filter((item) => item._id !== id);
+    setArticleData({ ...newArticle }); // using a spread syntax to it's new copy of the old object
+  }
 
   if (errorObj !== null) {
     return <ErrorComponent error={errorObj} />;
@@ -127,7 +133,10 @@ function ArticlePage(props) {
                   author: comment.author,
                   timestamp: format(new Date(comment.timestamp), "LLLL d, y"),
                   text: comment.text,
+                  _id: comment._id,
+                  article_id: articleData.article._id,
                 }}
+                removeCommentFromLocalArray={removeCommentFromLocalArray}
               />
             ))}
           </>
