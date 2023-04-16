@@ -49,6 +49,18 @@ a {
   color: #67fcf1;
 }
 
+.app .admin-controls {
+  display: flex;
+  gap: 20px;
+}
+
+.app button .loader-container {
+  margin-top: 0;
+  width: 100%;
+  height: 100%;
+  scale: 0.3;
+}
+
 .app .main-page .content {
   flex-direction: column;
   display: flex;
@@ -91,19 +103,31 @@ a {
   background-color: red;
 }
 
+.app .article-card-wrapper {
+  padding: 10px;
+  display: flex;
+}
+
+.app .article-card-wrapper .link {
+  width: 100%;
+}
+
 .app .article-card {
   transition: all 0.1s ease;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 10px;
   color: #e8e9ed;
 }
 
 .app .article-card .card-header {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: 2fr 1fr;
+  align-items: center;
+
+  display: flex;
+}
+
+.app .article-card-wrapper .admin-controls {
+  flex-grow: 0;
 }
 
 .app .article-card .card-header .title {
@@ -122,12 +146,9 @@ a {
   font-size: 1.1rem;
 }
 
-.app .article-card:hover {
-  background-color: rgba(231, 231, 231, 0.136);
-}
-
-.app .article-card:hover .text {
-  color: #e8e9ed;
+.app .article-card:hover .text,
+.app .article-card:hover .title {
+  text-decoration: underline;
 }
 
 .app .footer {
@@ -217,8 +238,8 @@ a {
   height: 25px;
 }
 
-.app .comment-field button,
-.app .auth-page button {
+.app button,
+.app button {
   transition: all 0.2s ease;
 
   height: 35px;
@@ -230,8 +251,8 @@ a {
   color: #d7d6db;
   cursor: pointer;
 }
-.app .comment-field button:hover,
-.app .auth-page button:hover {
+.app button:hover,
+.app button:hover {
   box-shadow: 3px 3px 0px #82bbc0;
 }
 

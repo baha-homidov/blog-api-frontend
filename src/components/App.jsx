@@ -5,14 +5,13 @@ import Footer from "./Footer";
 import Loader from "./Loader";
 import { Outlet } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
+
+import { useEffect, useState, useContext } from "react";
 import isLoggedIn from "../utils/auth";
 
 function App() {
   // Access the data from the context
   const { user, setUser } = useContext(AuthContext);
-
   const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {

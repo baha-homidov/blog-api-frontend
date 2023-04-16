@@ -1,6 +1,6 @@
 import Title from "./Title";
 import CommentCard from "./CommentCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Loader from "./Loader";
 import ErrorComponent from "./ErrorComponent";
 import format from "date-fns/format";
@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 function ArticlePage(props) {
   const [showLoader, setShowLoader] = useState(true);
+
   const [articleData, setArticleData] = useState([]);
   const [errorObj, setErrorObj] = useState(null);
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ function ArticlePage(props) {
     const fetchArticles = async () => {
       try {
         setShowLoader(true);
- 
+
         const response = await fetch(
           `http://localhost:8000/article/${params.id}`
         );

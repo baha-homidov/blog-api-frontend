@@ -8,6 +8,7 @@ import MainPage from "./components/MainPage";
 import ErrorComponent from "./components/ErrorComponent";
 import AuthPage from "./components/AuthPage";
 import AuthContextProvider from "./context/AuthContextProvider";
+
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
@@ -38,9 +39,11 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <RouterProvider router={router} />
-    </AuthContextProvider>
+
+      <AuthContextProvider>
+        <RouterProvider router={router} />
+      </AuthContextProvider>
+
   </React.StrictMode>
 );
 

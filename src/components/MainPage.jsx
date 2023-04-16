@@ -19,9 +19,7 @@ function MainPage() {
         setShowLoader(true);
         const response = await fetch("http://localhost:8000");
         const data = await response.json();
-        data.sort(
-          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-        );
+        data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         setShowLoader(false);
         setArticleList(data);
       } catch (error) {
@@ -31,6 +29,10 @@ function MainPage() {
     };
     fetchArticles();
   }, []);
+
+  async function removeArticleFromLocalArray(id) {
+    setArticleList(articleList.filter((item) => item._id !== id));
+  }
 
   if (errorObj) {
     return <ErrorComponent error={errorObj} />;
@@ -43,15 +45,16 @@ function MainPage() {
       <Welcome />
       <div className="content">
         {articleList.map((item) => (
-          <Link key={item._id} to={`article/${item._id}`}>
-            <ArticleCard
-              article={{
-                title: item.title,
-                text: item.text,
-                timestamp: format(new Date(item.timestamp), "LLLL d, y"),
-              }}
-            />
-          </Link>
+          <ArticleCard
+            key={item._id}
+            article={{
+              title: item.title,
+              text: item.text,
+              timestamp: format(new Date(item.timestamp), "LLLL d, y"),
+              _id: item._id,
+            }}
+            removeArticleFromLocalArray={removeArticleFromLocalArray}
+          />
         ))}
       </div>
     </div>

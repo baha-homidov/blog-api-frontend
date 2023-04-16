@@ -1,20 +1,24 @@
 import { useState, useEffect, useContext } from "react";
-import AuthContext from "../context/AuthContext";
+
 import Loader from "./Loader";
 import ErrorComponent from "./ErrorComponent";
 import { useNavigate } from "react-router-dom";
 import isLoggedIn from "../utils/auth";
+import AuthContext from "../context/AuthContext";
+
 function AuthPage() {
   const navigate = useNavigate();
 
   // Access the data from the context
-  const { user, setUser } = useContext(AuthContext);
 
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
   const [errorObj, setErrorObj] = useState(null);
+
+  const { user, setUser } = useContext(AuthContext);
+
   // const [registerUsername, setRegisterUsername] = useState("");
   // const [registerPassword, setRegisterPassword] = useState("");
 
@@ -77,6 +81,7 @@ function AuthPage() {
       if (data.response === "success") {
         setInvalidPassword(false);
         setUser(true);
+
       } else {
         setInvalidPassword(true);
       }
@@ -101,7 +106,9 @@ function AuthPage() {
       setUser(false);
       setShowLoader(false);
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getUser = async () => {
@@ -171,7 +178,9 @@ function AuthPage() {
           }}
         />
         <button type="submit">Submit</button>
-        {invalidPassword && <div className="invalid-password">Invalid Password</div>}
+        {invalidPassword && (
+          <div className="invalid-password">Invalid Password</div>
+        )}
       </form>
     </div>
   );
