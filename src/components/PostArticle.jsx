@@ -5,28 +5,31 @@ import Footer from "./Footer";
 import Loader from "./Loader";
 
 import AuthContext from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import isLoggedIn from "../utils/auth";
 
-function PostArticle() {
+function PostArticle(props) {
   // Access the data from the context
   const { user, setUser } = useContext(AuthContext);
   const [showLoader, setShowLoader] = useState(false);
   const navigate = useNavigate();
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
+  const params = useParams();
 
-  async function postArticle(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const articleData = {
       text: text.trim(),
       title: title.trim(),
     };
 
-    const url = `http://localhost:8000/article/`;
+    const url = props.update
+      ? `http://localhost:8000/article/${params.id}`
+      : `http://localhost:8000/article/`;
     const options = {
-      method: "POST",
+      method: props.update ? "PUT" : "POST",
       headers: {
         "Content-Type": "application/json", // Replace with the correct content type for your API
       },
@@ -52,13 +55,29 @@ function PostArticle() {
 
   useEffect(() => {
     const checkUser = async () => {
-      console.log("check");
-      setShowLoader(true);
-      const isLogged = await isLoggedIn();
-      setUser(isLogged);
-      setShowLoader(false);
-      if (!isLogged) {
-        navigate("/");
+      try {
+        setShowLoader(true);
+        const isLogged = await isLoggedIn();
+        setUser(isLogged);
+        if (!isLogged) {
+          navigate("/");
+        }
+        if (props.update) {
+          const response = await fetch(
+            `http://localhost:8000/article/${params.id}`
+          );
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.error, { status: 404 });
+          }
+
+          setText(data.article.text);
+          setTitle(data.article.title);
+        }
+
+        setShowLoader(false);
+      } catch (error) {
+        console.log(error);
       }
     };
     checkUser();
@@ -71,7 +90,7 @@ function PostArticle() {
   return (
     <div className="post-article">
       <h1>Post Article</h1>
-      <form onSubmit={postArticle} className="post-article-form">
+      <form onSubmit={handleSubmit} className="post-article-form">
         <label htmlFor="name">Title</label>
         <input
           value={title}

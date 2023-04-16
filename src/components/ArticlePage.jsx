@@ -6,7 +6,7 @@ import ErrorComponent from "./ErrorComponent";
 import format from "date-fns/format";
 import { useParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import isLoggedIn from "../utils/auth";
 function ArticlePage(props) {
@@ -58,7 +58,7 @@ function ArticlePage(props) {
       text: text.trim(),
     };
 
-    const url = `http://localhost:8000/article/${params.id}/comment`; 
+    const url = `http://localhost:8000/article/${params.id}/comment`;
     const options = {
       method: "POST",
       headers: {
@@ -133,7 +133,9 @@ function ArticlePage(props) {
     <div className="article-page">
       <h1 className="title">{articleData.article.title}</h1>
       <div className="admin-controls">
-        <button className="edit">Edit</button>
+        <Link to="edit">
+          <button className="edit">Edit</button>
+        </Link>
         <button onClick={deleteArticle} className="delete">
           Delete
         </button>

@@ -29,6 +29,11 @@ const router = createBrowserRouter([
         errorElement: <ErrorComponent />,
       },
       {
+        path: "/article/:id/edit",
+        element: <PostArticle update={true} />,
+        errorElement: <ErrorComponent />,
+      },
+      {
         path: "/article/:id",
         element: <ArticlePage />,
         errorElement: <ErrorComponent />,
@@ -45,11 +50,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-
-      <AuthContextProvider>
-        <RouterProvider router={router} />
-      </AuthContextProvider>
-
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
