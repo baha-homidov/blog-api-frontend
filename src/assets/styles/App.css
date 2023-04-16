@@ -190,7 +190,6 @@ a {
 
 .app .article-page .admin-controls {
   align-self: center;
-
 }
 
 .app .article-page p {
@@ -204,7 +203,8 @@ a {
 }
 
 .app .comment-field div.label,
-.app .auth-page label {
+.app .auth-page label,
+.app .post-article label {
   color: #67fcf1;
   font-size: 1.1rem;
   font-weight: bold;
@@ -214,7 +214,8 @@ a {
   margin-bottom: -10px;
 }
 
-.app .comment-field form {
+.app .comment-field form,
+.app .post-article form {
   display: flex;
   flex-direction: column;
 
@@ -222,23 +223,29 @@ a {
 }
 
 .app .comment-field input,
-.app .comment-field textarea {
+.app .comment-field textarea,
+.app .post-article input,
+.app .post-article textarea {
   width: min(100%, 400px);
   transition: all 0.2s ease;
 }
 
-.app .comment-field textarea {
+.app .comment-field textarea,
+.app .post-article textarea {
   resize: none;
   height: 100px;
   outline: none;
 }
 .app .comment-field textarea:focus,
 .app .comment-field input:focus,
-.app .auth-page input:focus {
+.app .auth-page input:focus,
+.app .post-article input:focus,
+.app .post-article textarea:focus {
   box-shadow: 5px 5px 0px #82bbc0;
 }
 
-.app .comment-field input {
+.app .comment-field input,
+.app .post-article input {
   outline: none;
   height: 25px;
 }
@@ -327,6 +334,31 @@ a {
   font-size: 1.3rem;
   color: red;
 }
+
+.app .post-article {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.app .post-article h1 {
+  align-self: center;
+}
+
+
+
+.app .post-article form textarea,
+.app .post-article form input {
+  font-size: 1.1rem;
+  padding: 5px;
+  width: 98%;
+}
+
+.app .post-article form textarea {
+  height: 50vh;
+}
+
 /* loading spinner */
 
 .loader-container {

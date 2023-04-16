@@ -10,6 +10,7 @@ import AuthPage from "./components/AuthPage";
 import AuthContextProvider from "./context/AuthContextProvider";
 
 import reportWebVitals from "./reportWebVitals";
+import PostArticle from "./components/PostArticle";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <MainPage />,
+        errorElement: <ErrorComponent />,
+      },
+      {
+        path: "/article/new-post",
+        element: <PostArticle />,
         errorElement: <ErrorComponent />,
       },
       {

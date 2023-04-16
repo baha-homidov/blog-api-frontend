@@ -58,7 +58,7 @@ function ArticlePage(props) {
       text: text.trim(),
     };
 
-    const url = `http://localhost:8000/article/${params.id}/comment`; // Replace with your endpoint URL
+    const url = `http://localhost:8000/article/${params.id}/comment`; 
     const options = {
       method: "POST",
       headers: {
