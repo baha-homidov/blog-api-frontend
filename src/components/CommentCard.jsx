@@ -1,9 +1,14 @@
-import { useContext } from "react";
-import isLoggedIn from "../utils/auth";
-import AuthContext from "../context/AuthContext";
+// component import
 import Loader from "./Loader";
+
+// context import
+import AuthContext from "../context/AuthContext";
+
+// utilites
+
+import isLoggedIn from "../utils/auth";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 function CommentCard(props) {
   // Access the data from the context

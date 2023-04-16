@@ -1,10 +1,10 @@
-import Header from "./Header";
-import "../assets/styles/App.css";
-
-import Footer from "./Footer";
+// component import
 import Loader from "./Loader";
 
+// context import
 import AuthContext from "../context/AuthContext";
+
+// utilites
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import isLoggedIn from "../utils/auth";

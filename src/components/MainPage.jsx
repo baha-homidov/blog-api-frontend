@@ -1,10 +1,11 @@
+// component import
 import Welcome from "./Welcome";
-import format from "date-fns/format";
 import ErrorComponent from "./ErrorComponent";
-import ArticleCard from "./ArticleCard";
 import Loader from "./Loader";
-import "../assets/styles/MainPage.css";
-import { Link } from "react-router-dom";
+import ArticleCard from "./ArticleCard";
+
+// utilites
+import format from "date-fns/format";
 import { useState, useEffect } from "react";
 
 function MainPage() {

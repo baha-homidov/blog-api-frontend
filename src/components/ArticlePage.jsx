@@ -1,12 +1,17 @@
+// component import
 import Title from "./Title";
 import CommentCard from "./CommentCard";
-import { useState, useEffect, useContext } from "react";
 import Loader from "./Loader";
 import ErrorComponent from "./ErrorComponent";
-import format from "date-fns/format";
-import { useParams } from "react-router-dom";
+
+// context import
 import AuthContext from "../context/AuthContext";
-import { useNavigate, Link } from "react-router-dom";
+
+// utilites
+import { useState, useEffect, useContext } from "react";
+import format from "date-fns/format";
+
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 import isLoggedIn from "../utils/auth";
 function ArticlePage(props) {

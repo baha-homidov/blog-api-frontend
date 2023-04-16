@@ -1,17 +1,21 @@
-import AuthContext from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react"; 
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import isLoggedIn from "../utils/auth";
+// component import
 import Loader from "./Loader";
+
+// context imort
+import AuthContext from "../context/AuthContext";
+
+// utilites import
+import { useNavigate, Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import isLoggedIn from "../utils/auth";
+
 function ArticleCard(props) {
   // Access the data from the context
   const { user, setUser } = useContext(AuthContext);
 
   const [showLoader, setShowLoader] = useState(false);
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // navigate object to navigate the routes programmaticaly
 
   async function deleteArticle() {
     if (showLoader === true) {
@@ -35,6 +39,8 @@ function ArticleCard(props) {
         if (!response.ok) {
           throw new Error("Network error");
         }
+
+        // remove the article from the local array to prevent new fetch call and page reload
         props.removeArticleFromLocalArray(props.article._id);
 
         setShowLoader(false);
@@ -48,7 +54,6 @@ function ArticleCard(props) {
     }
   }
 
-  console.log(props.article);
   return (
     <div className="article-card-wrapper">
       <Link className="link" to={`article/${props.article._id}`}>
