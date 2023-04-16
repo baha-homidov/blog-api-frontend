@@ -188,6 +188,11 @@ a {
   text-align: center;
 }
 
+.app .article-page .admin-controls {
+  align-self: center;
+
+}
+
 .app .article-page p {
   font-size: 1.1rem;
 }

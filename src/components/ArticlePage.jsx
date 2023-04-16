@@ -5,9 +5,14 @@ import Loader from "./Loader";
 import ErrorComponent from "./ErrorComponent";
 import format from "date-fns/format";
 import { useParams } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
+import isLoggedIn from "../utils/auth";
 function ArticlePage(props) {
   const [showLoader, setShowLoader] = useState(true);
+  const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [articleData, setArticleData] = useState([]);
   const [errorObj, setErrorObj] = useState(null);
@@ -83,6 +88,41 @@ function ArticlePage(props) {
     setArticleData({ ...newArticle }); // using a spread syntax to it's new copy of the old object
   }
 
+  async function deleteArticle() {
+    if (showLoader === true) {
+      return;
+    }
+
+    setShowLoader(true);
+    const isLogged = await isLoggedIn();
+
+    if (isLogged) {
+      try {
+        setShowLoader(true);
+        const response = await fetch(
+          `http://localhost:8000/article/${params.id}`,
+          {
+            method: "DELETE",
+            credentials: "include",
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Network error");
+        }
+
+        setShowLoader(false);
+        navigate("/");
+      } catch (error) {
+        console.log(error);
+        navigate("/");
+      }
+    } else {
+      setUser(false);
+      navigate("/");
+    }
+  }
+
   if (errorObj !== null) {
     return <ErrorComponent error={errorObj} />;
   }
@@ -92,6 +132,12 @@ function ArticlePage(props) {
   ) : (
     <div className="article-page">
       <h1 className="title">{articleData.article.title}</h1>
+      <div className="admin-controls">
+        <button className="edit">Edit</button>
+        <button onClick={deleteArticle} className="delete">
+          Delete
+        </button>
+      </div>
       <p>{articleData.article.text}</p>
       {!showCommentLoader ? (
         <div className="comment-field">
