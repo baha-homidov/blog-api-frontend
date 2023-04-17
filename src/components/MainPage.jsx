@@ -18,7 +18,7 @@ function MainPage() {
     const fetchArticles = async () => {
       try {
         setShowLoader(true);
-        const response = await fetch("http://localhost:8000");
+        const response = await fetch("https://blogapibackend.onrender.com/");
         const data = await response.json();
         data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
         setShowLoader(false);

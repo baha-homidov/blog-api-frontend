@@ -28,7 +28,7 @@ function CommentCard(props) {
       try {
         setShowLoader(true);
         const response = await fetch(
-          `http://localhost:8000/article/${props.comment.article_id}/comment/${props.comment._id}`,
+          `https://blogapibackend.onrender.com/article/${props.comment.article_id}/comment/${props.comment._id}`,
           {
             method: "DELETE",
             credentials: "include",
