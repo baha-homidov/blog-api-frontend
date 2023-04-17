@@ -137,14 +137,16 @@ function ArticlePage(props) {
   ) : (
     <div className="article-page">
       <h1 className="title">{articleData.article.title}</h1>
-      <div className="admin-controls">
-        <Link to="edit">
-          <button className="edit">Edit</button>
-        </Link>
-        <button onClick={deleteArticle} className="delete">
-          Delete
-        </button>
-      </div>
+      {user && (
+        <div className="admin-controls">
+          <Link to="edit">
+            <button className="edit">Edit</button>
+          </Link>
+          <button onClick={deleteArticle} className="delete">
+            Delete
+          </button>
+        </div>
+      )}
       <p>{articleData.article.text}</p>
       {!showCommentLoader ? (
         <div className="comment-field">
