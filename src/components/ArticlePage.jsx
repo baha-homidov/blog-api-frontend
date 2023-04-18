@@ -34,7 +34,7 @@ function ArticlePage(props) {
         setShowLoader(true);
 
         const response = await fetch(
-          `https://blogapibackend.onrender.com/article/${params.id}`
+          `https://blogapibackend.onrender.com:3000/article/${params.id}`
         );
 
         const data = await response.json();
@@ -63,7 +63,7 @@ function ArticlePage(props) {
       text: text.trim(),
     };
 
-    const url = `https://blogapibackend.onrender.com/article/${params.id}/comment`;
+    const url = `https://blogapibackend.onrender.com:3000/article/${params.id}/comment`;
     const options = {
       method: "POST",
       headers: {
@@ -105,7 +105,7 @@ function ArticlePage(props) {
       try {
         setShowLoader(true);
         const response = await fetch(
-          `https://blogapibackend.onrender.com/article/${params.id}`,
+          `https://blogapibackend.onrender.com:3000/article/${params.id}`,
           {
             method: "DELETE",
             credentials: "include",

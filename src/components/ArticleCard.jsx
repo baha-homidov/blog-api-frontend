@@ -29,7 +29,7 @@ function ArticleCard(props) {
       try {
         setShowLoader(true);
         const response = await fetch(
-          `https://blogapibackend.onrender.com/article/${props.article._id}`,
+          `https://blogapibackend.onrender.com:3000/article/${props.article._id}`,
           {
             method: "DELETE",
             credentials: "include",
