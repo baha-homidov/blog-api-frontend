@@ -65,7 +65,7 @@ function AuthPage() {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://blogapibackend.onrender.com:3000/auth/login", {
+      const response = await fetch("https://blogapibackend.onrender.com/auth/login", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -97,7 +97,7 @@ function AuthPage() {
   const logout = async () => {
     try {
       setShowLoader(true);
-      const response = await fetch("https://blogapibackend.onrender.com:3000/auth/logout", {
+      const response = await fetch("https://blogapibackend.onrender.com/auth/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -116,7 +116,7 @@ function AuthPage() {
 
   const getUser = async () => {
     try {
-      const response = await fetch("https://blogapibackend.onrender.com:3000/auth/getuser", {
+      const response = await fetch("https://blogapibackend.onrender.com/auth/getuser", {
         method: "GET",
         credentials: "include",
       });

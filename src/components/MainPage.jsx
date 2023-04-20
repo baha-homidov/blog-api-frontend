@@ -18,7 +18,7 @@ function MainPage() {
     const fetchArticles = async () => {
       try {
         setShowLoader(true);
-        const url = "https://blogapibackend.onrender.com:3000/";
+        const url = "https://blogapibackend.onrender.com/";
         console.log(url);
 
         const response = await fetch(url);

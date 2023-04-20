@@ -18,7 +18,7 @@ function Header() {
     }
     try {
       setShowLoader(true);
-      const response = await fetch("https://blogapibackend.onrender.com:3000/auth/logout", {
+      const response = await fetch("https://blogapibackend.onrender.com/auth/logout", {
         method: "POST",
         credentials: "include",
       });

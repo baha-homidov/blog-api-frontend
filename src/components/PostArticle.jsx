@@ -26,8 +26,8 @@ function PostArticle(props) {
     };
 
     const url = props.update
-      ? `https://blogapibackend.onrender.com:3000/article/${params.id}`
-      : `https://blogapibackend.onrender.com:3000/article`;
+      ? `https://blogapibackend.onrender.com/article/${params.id}`
+      : `https://blogapibackend.onrender.com/article`;
     const options = {
       method: props.update ? "PUT" : "POST",
       headers: {
@@ -64,7 +64,7 @@ function PostArticle(props) {
         }
         if (props.update) {
           const response = await fetch(
-            `https://blogapibackend.onrender.com:3000/${params.id}`
+            `https://blogapibackend.onrender.com/${params.id}`
           );
           const data = await response.json();
           if (!response.ok) {

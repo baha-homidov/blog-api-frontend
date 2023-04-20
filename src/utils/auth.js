@@ -1,6 +1,6 @@
 export default async function isLoggedIn() {
   try {
-    const response = await fetch("https://blogapibackend.onrender.com:3000/auth/getuser", {
+    const response = await fetch("https://blogapibackend.onrender.com/auth/getuser", {
       method: "GET",
       credentials: "include",
     });
